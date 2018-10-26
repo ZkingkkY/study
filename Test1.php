@@ -1,8 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zky
- * Date: 2018/10/26
- * Time: 15:38
- */
 
+//要在$beizi的字符串中显示一个双引号怎么办？
+$shengyang = 'i\'m xiaoshengyang\'\'\'';
+
+echo  $shengyang;
+?>
