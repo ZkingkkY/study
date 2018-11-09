@@ -5,5 +5,5 @@
  * Date: 2018/10/30
  * Time: 17:25
  */
-define('AUTH',true);
+//define('AUTH',false);
 ?>
