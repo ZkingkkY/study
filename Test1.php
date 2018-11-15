@@ -1,7 +1,4 @@
 <?php
-
-
-
 //尝试将include 'version.php'这一行代码注释后再执行看看，对比结果
 include 'version.php';
 /*
