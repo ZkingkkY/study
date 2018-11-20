@@ -276,7 +276,7 @@ $arr=array(
         array('张某','21','妖人'),
     ),
 );
-/*
+
 foreach ($arr as $key => $value){
     echo  '<h1 align="center">'.$key.'</h1>>'.'<br>';
     echo '<table width="800" border="1" align="center">';
@@ -290,21 +290,21 @@ foreach ($arr as $key => $value){
     }
     echo '</table>';
 }
-*/
+
 
 while(list($key,$value)=each($arr)){
     echo  '<h1 align="center">'.$key.'</h1>>'.'<br>';
  echo '<table width="800" border="1" align="center">';
 
-    foreach ($value as $value1 ){
-        echo '<tr>';
-        foreach ($value1 as $key=>$value2) {
-            echo '<td>' . $value2 . '</td>'.'<br>';
-        }
-        echo '</tr>';
-    }
-
+ while(list($key1,$value1)=each($value)){
+     echo '<tr>';
+     while(list($key2,$value2)=each($value1)){
+         echo '<td>' . $value2 . '</td>'.'<br>';
+     }
+     echo '</tr>';
+ }
 echo '</table>';
 }
+
 
 ?>
