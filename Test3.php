@@ -180,6 +180,8 @@ $area['china']['北京']['cp'] = '西城区';
 echo $area['china']['北京']['cp'];
 */
 
+
+/*
 $arr=array(
     '教学部'=>array(
         array('李某','18','人妖'),
@@ -197,16 +199,112 @@ $arr=array(
         array('张某','21','妖人'),
     ),
 );
+foreach($arr as $value) {//将二维数组的值给 value
 
+    foreach ($value as $value1) {//再将三维数组的值给 value1
 
-foreach ($arr as $value){
-
-
-    foreach ('财务部' as $k => $v){
-        echo $k.'-----------------'.$v;
+        foreach ($value1 as $k => $v) {
+            echo $k . '-----' . $v . '<br />';
+        }
+        echo '----------------------------'.'<br>';
     }
 }
+
+*/
+
+
+/*
+//定义一个变量叫$kongjie(空姐)
+$kongjie=[
+    'gao'=>'穿黑衣服的',
+    'shou'=>'退特别长特别细',
+    'mei'=>'好白',
+];
+
+//第一次each
+$data = each($kongjie);
+
+echo '<pre>';
+var_dump($data);
+echo '</pre>';
+
+echo '-----华丽丽分割线------<br />';
+
+
+//第2次each
+$data = each($kongjie);
+
+echo '<pre>';
+var_dump($data);
+echo '</pre>';
+
+echo '-----华丽丽分割线------<br />';
+
+//第3次each【执行到了最后一个元素了】
+$data = each($kongjie);
+
+echo '<pre>';
+var_dump($data);
+echo '</pre>';
+
+echo '-----华丽丽分割线------<br />';
+
+//第4次【此时，后面已没有可操作的元素了，看返回什么】
+$data = each($kongjie);
+
+echo '<pre>';
+var_dump($data);
+echo '</pre>';
+
+echo '-----华丽丽分割线------<br />';
+*/
+
+$arr=array(
+    '教学部'=>array(
+        array('李某','18','人妖'),
+        array('高某','20','男'),
+        array('张某','21','妖人'),
+    ),
+    '宣传部'=>array(
+        array('李某','18','人妖'),
+        array('高某','20','男'),
+        array('张某','21','妖人'),
+    ),
+    '财务部'=>array(
+        array('李某','18','人妖'),
+        array('高某','20','男'),
+        array('张某','21','妖人'),
+    ),
+);
+/*
+foreach ($arr as $key => $value){
+    echo  '<h1 align="center">'.$key.'</h1>>'.'<br>';
+    echo '<table width="800" border="1" align="center">';
+    foreach ($value as $value1 ){
+        echo '<tr>';
+        foreach ($value1 as $key=>$value2) {
+            echo '<td>' . $value2 . '</td>'.'<br>';
+        }
+        echo '</tr>';
+
+    }
+    echo '</table>';
+}
+*/
+
+while(list($key,$value)=each($arr)){
+    echo  '<h1 align="center">'.$key.'</h1>>'.'<br>';
+ echo '<table width="800" border="1" align="center">';
+
+    foreach ($value as $value1 ){
+        echo '<tr>';
+        foreach ($value1 as $key=>$value2) {
+            echo '<td>' . $value2 . '</td>'.'<br>';
+        }
+        echo '</tr>';
+    }
+
+echo '</table>';
+}
+
 ?>
-
-
-
