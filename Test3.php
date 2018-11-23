@@ -259,6 +259,7 @@ echo '</pre>';
 echo '-----华丽丽分割线------<br />';
 */
 
+/*
 $arr=array(
     '教学部'=>array(
         array('李某','18','人妖'),
@@ -305,6 +306,139 @@ while(list($key,$value)=each($arr)){
  }
 echo '</table>';
 }
+*/
 
+/*
+$mingren = array("邓超", "黄晓明");
+$mingren1 = array("邓超", "黄晓明");
+$mingren2 = array("邓超", "黄晓明", "宁泽涛", "钟汉良");
+$mingren3 = array("邓超", "黄晓明", "宁泽涛", "钟汉良");
+$dc = array_unshift($mingren , "宁泽涛", "钟汉良");
+$dc1 = array_push($mingren1 , "宁泽涛", "钟汉良");
+$dc2 = array_shift($mingren2);
+$dc3 = array_pop($mingren3);
+echo $dc .'<br />';
+echo $dc1 .'<br />';
+echo $dc2 .'<br />';
+echo $dc3 .'<br />';
+
+print_r($mingren);
+echo '<br>';
+print_r($mingren1);
+echo '<br>';
+print_r($mingren2);
+echo '<br>';
+print_r($mingren3);
+
+*/
+
+/*
+$t=array(
+    '我们',
+    'yy'=>'永远',
+    'dbg'=>'需要不断奋进',
+    'djn'=>'才能开创未来'
+);
+
+
+//读取数组的值
+echo current($t).'<br />';
+//读取数组的键
+echo key($t).'<br />';
+
+//向后移动一下
+next($t);
+
+//再读值和键
+echo current($t).'<br />';
+
+echo key($t).'<br />';
+
+
+//向后移动一下
+next($t);
+echo current($t).'<br />';
+
+echo key($t).'<br />';
+
+
+//向前移动一下
+prev($t);
+echo current($t).'<br />';
+echo key($t).'<br />';
+
+
+//移到末尾
+end($t);
+echo current($t).'<br />';
+echo key($t).'<br />';
+
+//移至开始处
+reset($t);
+echo current($t).'<br />';
+
+echo key($t).'<br />';
+
+//销毁数组
+unset($t);
+//var_dump($t);
+
+*/
+
+//正则表达式
+/*
+\d 匹配0-9
+\D 匹配除了0-9以外的字符
+\w 匹配a-z A-Z 0-9 _ 字符
+\W 除了 a-z A-Z 0-9 字符
+\s 匹配\n \r \t 空格字符
+\S 非空字符
+[] 指定字符
+. 除了\n以外的所有字符
+
+//元字符
+*     出现0或更多次数
++     出现1或更多次数
+？    出现0或者1次数
+{m,n} 出现m到n之间次数
+{m}   出现m次数
+{m,}  出现m次数或这更多
+^     必须以该字符开始匹配
+$     必须以该字符结束匹配
+\b    边界符号指定字符在最前或者最后
+\B    非边界符号 被修饰的字符不能出现在开头结束以及空格后面
+*/
+
+
+
+/*
+$zz = '/\s/';
+
+$string = '我爱喝9 你爱不爱喝';
+
+if(preg_match($zz, $string, $matches)){
+    echo '匹配到了，结果为：';
+    var_dump($matches);
+}else{
+    echo '没有匹配到';
+}
+*/
+
+
+$zz = '/^BC\D*C/';
+
+$string = "BCABC";
+
+//待会儿再试试中间没有0-9的情况
+//$string1 = "ABC888888ABC";
+//$string2 = "ABCABC";
+
+
+if(preg_match($zz, $string, $matches)){
+    echo '匹配到了，结果为：';
+    var_dump($matches);
+}else{
+    echo '没有匹配到';
+}
 
 ?>
