@@ -408,6 +408,9 @@ $     必须以该字符结束匹配
 \b    边界符号指定字符在最前或者最后
 \B    非边界符号 被修饰的字符不能出现在开头结束以及空格后面
 
+A 从开始字符开始匹配
+D 结束符$后面不准有空格
+
 
 
 //修正符号
@@ -430,21 +433,68 @@ if(preg_match($zz, $string, $matches)){
 }
 */
 
+/*
+$string='[b]为你写诗[/b]
+[i]为你做不可能事[/i]
+[u]哎呀，哥不是写情诗[/u]
+[color=Red]哥是在说歌词[/color]
+[size=7]吴克群[/size]
+[qq]123123123[/qq]';
 
-$zz = '/^BC\D*C/';
+//匹配UBB字符
+$pattern=array(
+    '/\[b\](.*)\[\/b\]/i',
+    '/\[i\](.*)\[\/i\]/iU',
+    '/\[u\](.*?)\[\/u\]/i',
+    '/\[color=(.*?)\](.*?)\[\/color\]/',
+    '/\[size=(\d)\](.*?)\[\/size\]/',
+    '/\[qq\](\d{5,12})\[\/qq\]/',
 
-$string = "BCABC";
+);
 
-//待会儿再试试中间没有0-9的情况
-//$string1 = "ABC888888ABC";
-//$string2 = "ABCABC";
+//需要替换的UBB字符
+$replace=array(
+    '<b>$1</b><br />',       //   //1==$1
+    '<i>\\1</i><br />',
+    '<u>\\1</u><br />',
+    '<font color="\\1">\\2</font><br />',
+    '<font size="\\1">\\2</font><br />',
+    '<a href="http://wpa.qq.com/msgrd?V=1&Uin=\\1&amp;Site=[Discuz!]&amp;Menu=yes"
+ target="_blank"><img src="http://wpa.qq.com/pa?p=1:\\1:1" border="0"></a>',
+);
+
+//使用正则匹配$string，将$string当中的值变为$replace的效果
+$ubb=preg_replace($pattern,$replace,$string);
+
+echo $ubb;
+*/
 
 
-if(preg_match($zz, $string, $matches)){
-    echo '匹配到了，结果为：';
-    var_dump($matches);
-}else{
-    echo '没有匹配到';
+/*
+//假设我们有一个多行的文件叫NoAlike.txt，没有的话你可以新建一个这个文件
+$filename = 'D:\a.txt';
+
+//打开这个文件，将文件内容赋值给$filestring
+$filestring = file_get_contents($filename);
+
+//因为每一行有一个回车即\n，我用\n来把这个字符串切割成数组
+$filearray = explode("\n", $filestring);
+
+//把切割成的数组，下标赋值给$key,值赋值给$val，每次循环将$key加1。
+while (list($key, $val) = each($filearray)) {
+    ++$key;
+    $val = trim($val);
+
+    //用的单引号，单引号不解释变量进行了拼接而已
+    print 'Line' . $key .':'.  $val.'<br />';
 }
+*/
 
+
+$filename1 = 'D:\a.txt';
+$fp = fopen($filename1, 'r+');//打开文件
+$contents = fread($fp, 1024); //读取文件长度
+fclose($fp);//关闭文件
+var_dump($fp);
+echo $contents;
 ?>
