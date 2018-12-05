@@ -490,11 +490,172 @@ while (list($key, $val) = each($filearray)) {
 }
 */
 
-
+/*
 $filename1 = 'D:\a.txt';
 $fp = fopen($filename1, 'r+');//打开文件
 $contents = fread($fp, 1024); //读取文件长度
 fclose($fp);//关闭文件
 var_dump($fp);
 echo $contents;
+*/
+
+
+
+//'r'  只读方式打开，将文件指针指向文件头。
+//'r+'  读写方式打开，将文件指针指向文件头。 覆盖原内容。
+//'w'  写入方式打开，将文件指针指向文件头并将文件大小截为零。如果文件不存在则尝试创建之。
+//'w+'  读写方式打开，将文件指针指向文件头并将文件大小截为零。如果文件不存在则尝试创建之。
+//'a'  写入方式打开，将文件指针指向文件末尾。如果文件不存在则尝试创建之。不覆盖
+//'a+'  读写方式打开，将文件指针指向文件末尾。如果文件不存在则尝试创建之。
+//'x'  创建并以写入方式打开，将文件指针指向文件头。如果文件已存在，则 fopen()  调用失败并返回 FALSE ，并生成一条 E_WARNING  级别的错误信息。
+                //如果文件不存在则尝试创建之。这和给底层的 open(2) 系统调用指定 O_EXCL|O_CREAT 标记是等价的。
+//'x+'  创建并以读写方式打开，其他的行为和 'x' 一样
+
+
+//对文件的增删改查
+//----
+//----
+//----
+
+/*
+//新增文件
+
+
+$data = "这是第一个文件名为first。";
+$numbytes = file_put_contents('first.txt', $data);//不写路径，文件就生成在对应的包下
+if($numbytes){
+    echo '写入成功，我们读取看看结果试试：'.'<br>';
+
+    echo file_get_contents('first.txt').'<br>';
+
+}else{
+    echo '写入失败或者没有权限，注意检查'.'<br>';
+}
+
+
+//修改文件内容
+
+
+
+$filename = 'first1.txt';
+$fp= fopen($filename, "a");
+$time=getdate();
+$time2=$time['year'].'年'.$time['mon'].'月'.$time['mday'].'日'.$time['hours'].'时'.$time['minutes'].'分'.$time['seconds'].'秒';
+$len = fwrite($fp, '修改first文件！修改时间为：'.$time2);
+fclose($fp);
+echo file_get_contents('first.txt').'<br>';
+print $len .'字节被写入了';
+
+
+//创建了一个临时文件
+
+
+$handle = tmpfile();
+//向里面写入了数据
+$numbytes = fwrite($handle, '写入临时文件');
+
+//关闭临时文件，文件即被删除
+fclose($handle);
+
+echo  '向临时文件中写入了'.$numbytes . '个字节';
+
+
+//修改文件名
+$filename = 'four.txt';
+//新文件名
+$filename2 = 'first.txt';
+//修改名字
+if(rename($filename, $filename2)){
+    echo $filename . '成功改名为' . $filename2 . '<br>';
+}else{
+    echo '改名失败';
+}
+
+
+//复制文件
+$filename3 = 'second.txt';
+$filename4 = 'third.txt';
+
+if (copy($filename3, $filename4)){
+    echo '文件复制成功'.'<br>';
+}else{
+echo '复制失败';
+}
+
+//删除文件
+$filename3='third.txt';
+if(unlink($filename3)){
+    echo '文件删除成功';
+}else{
+echo '删除失败';
+}
+*/
+
+
+
+
+
+//文件检测，用于安装检测
+
+//可以定义一批文件是否存在
+$files = [
+    'version.php',
+    'uploads/',
+    'Package',
+
+];
+
+//定义标志位变量
+$flag = true;
+foreach($files as  $v){
+
+    //判断是文件还是文件夹
+
+    if(file_exists($v)<>true){
+        echo $v.' 不存在';
+    }
+    else {
+        if (is_file($v)) {
+            echo $v.' 是一个文件    ';
+
+        } else if (is_dir($v)) {
+            echo $v.' 是一个文件夹    ';
+
+        }
+
+        //判读是否可读
+
+        if (is_readable($v)) {
+            echo ' 可读';
+        } else {
+            echo '<font color="red">不可读</font>';
+        }
+
+        //判读时候可写
+
+        if (is_writeable($v)) {
+            echo '可写';
+        } else {
+            echo '<font color="red">不可写</font>';
+        }
+
+        //判读是否可以执行
+        if (is_executable($v)) {
+            echo '可执行';
+        } else {
+            echo '<font color="red"> 不可执行</font>';
+        }
+
+    }
+    echo '<br />';
+}
+
+if($flag){
+    echo '<a href="step1">下一步</a>';
+
+}else{
+    echo '不能进行安装';
+}
+
+
 ?>
