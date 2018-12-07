@@ -594,7 +594,7 @@ echo '删除失败';
 
 
 
-
+/*
 //文件检测，用于安装检测
 
 //可以定义一批文件是否存在
@@ -656,6 +656,45 @@ if($flag){
 }else{
     echo '不能进行安装';
 }
+*/
+
+//指针操作
+//对文件进行读取，根据指针开始读取，其中fseek方法用来移动指针，到固定的位置开始读取文件
+//fread方法将指针指向开头位置
+$filename = 'first.txt';
+$fp= fopen($filename, "r+");
+
+//获取文件大小
+echo $filename . '文件大小为: ' . filesize($filename) . ' bytes'.'<br>';
+
+//每次只读取一个字符
+echo  fgetc($fp).'<br>';
+
+$i=0;
+//我要全部读取可以,读取一次将结果赋值一次给$string
+while($string = fgetc($fp)){
+
+    echo $string;
+    echo $i.'<br>';
+    $i++;
+
+}
 
 
+echo '第一次读取数据: ';
+echo fread($fp,13).'<br>';
+//再下次再次打开文件之前接着上次读的地方继续读取
+echo '第二次读取数据: ';
+echo fread($fp,20).'<br>';
+//指针设置回到开始处
+rewind($fp);
+//再读取，即从开始处读取
+echo '指针回到开头';
+echo fread($fp,13).'<br>';
+//文件指针向后移动5个字符
+fseek($fp,5);
+//再看看文件中输出的是什么
+echo '指针向后移动5个单位' ;
+echo fread($fp,15).'<br>';
+fclose($fp);
 ?>
