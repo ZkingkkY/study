@@ -658,6 +658,9 @@ if($flag){
 }
 */
 
+
+
+/*
 //指针操作
 //对文件进行读取，根据指针开始读取，其中fseek方法用来移动指针，到固定的位置开始读取文件
 //fread方法将指针指向开头位置
@@ -697,4 +700,24 @@ fseek($fp,5);
 echo '指针向后移动5个单位' ;
 echo fread($fp,15).'<br>';
 fclose($fp);
+*/
+
+$fp = fopen("first.txt", "r+");
+flock($fp, LOCK_EX);
+// 进行排它型锁定
+if (flock($fp, LOCK_EX)) {
+
+    fwrite($fp, "文件这个时候被我独占了哟\n");
+
+    // 释放锁定
+    flock($fp, LOCK_UN);
+} else {
+    echo "锁失败，可能有人在操作，这个时候不能将文件上锁";
+}
+
+fclose($fp);
+
+
+
+
 ?>
