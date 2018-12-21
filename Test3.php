@@ -702,6 +702,7 @@ echo fread($fp,15).'<br>';
 fclose($fp);
 */
 
+/*
 $fp = fopen("first.txt", "r+");
 flock($fp, LOCK_EX);
 // 进行排它型锁定
@@ -716,8 +717,36 @@ if (flock($fp, LOCK_EX)) {
 }
 
 fclose($fp);
+*/
+
+/*
+$dir = "d:/";
+
+//判断是否是文件夹，是文件夹
+if (is_dir($dir)) {
+    if ($dh = opendir($dir)) {
 
 
+        //读取到最后返回false，停止循环
+        while (($file = readdir($dh)) !== false) {
+            echo "文件名为: $file : 文件的类型是: " . filetype($dir . $file) . "<br />";
+        }
 
+        closedir($dh);
+    }
+}
+*/
+
+
+$path_parts = pathinfo('d:/www/index.inc.php');
+
+echo '文件目录名：'.$path_parts['dirname']."<br />";
+echo '文件全名：'.$path_parts['basename']."<br />";
+echo '文件扩展名：'.$path_parts['extension']."<br />";
+echo '不包含扩展的文件名：'.$path_parts['filename']."<br />";
+
+echo "截取到.php  :".basename('d:/www/index.inc.php', ".php")."<br/>";
+
+echo dirname(__FILE__);//返回当前文件夹所在路径
 
 ?>
