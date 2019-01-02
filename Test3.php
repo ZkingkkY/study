@@ -180,6 +180,36 @@ $area['china']['北京']['cp'] = '西城区';
 echo $area['china']['北京']['cp'];
 */
 
+/*
+$data = array(
+
+    0 => array(
+        '中国' => 'china',
+        '美国' => 'usa',
+        '德国' => ' Germany',
+    ),
+
+    1 => array(
+        '湖北' => 'hubei',
+        '河北' => 'hebei',
+        '山东' => 'shandong',
+        '山西' => 'sanxi',
+    ),
+
+);
+
+//注：我们在使用foreach循环时，第一次循环将键为0和键为1的两个数组赋值给一个变量($value)。然后，再套一个循环遍历这个$value变量，$value中的值取出来，赋值给$k和$v。
+
+foreach($data as $value){
+
+    foreach($value as $k => $v){
+        echo $k . '-----' . $v .'<br />';
+    }
+
+    echo '----------分割线-----------<br />';
+
+}
+*/
 
 /*
 $arr=array(
@@ -331,6 +361,9 @@ echo '<br>';
 print_r($mingren3);
 
 */
+
+
+
 
 /*
 $t=array(
@@ -737,7 +770,7 @@ if (is_dir($dir)) {
 }
 */
 
-
+/*
 $path_parts = pathinfo('d:/www/index.inc.php');
 
 echo '文件目录名：'.$path_parts['dirname']."<br />";
@@ -748,5 +781,7 @@ echo '不包含扩展的文件名：'.$path_parts['filename']."<br />";
 echo "截取到.php  :".basename('d:/www/index.inc.php', ".php")."<br/>";
 
 echo dirname(__FILE__);//返回当前文件夹所在路径
+*/
+
 
 ?>
