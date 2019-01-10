@@ -1,8 +1,8 @@
-<form action="" enctype="multipart/form-data" method="get"
+<form action="" enctype="multipart/form-data" method="post"
       name="uploadfile">上传文件：<input type="file" name="upfile" /><br>
     <input type="submit" value="上传" /></form>
+
 <?php
-//print_r($_FILES["upfile"]);
 if(is_uploaded_file($_FILES['upfile']['tmp_name'])){
     $upfile=$_FILES["upfile"];
 //获取数组里面的值
@@ -21,6 +21,7 @@ if(is_uploaded_file($_FILES['upfile']['tmp_name'])){
         case 'image/png':$okType=true;
             break;
     }
+
     if($okType){
         /**
          * 0:文件上传成功<br/>
@@ -41,7 +42,7 @@ if(is_uploaded_file($_FILES['upfile']['tmp_name'])){
         echo "开始移动上传文件<br/>";
 //把上传的临时文件移动到up目录下面
         move_uploaded_file($tmp_name,'up/'.$name);
-        $destination="up/".$name;
+        $destination="D:/workplace/PHP/study".$name;
         echo "================<br/>";
         echo "上传信息：<br/>";
         if($error==0){
