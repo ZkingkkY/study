@@ -6,7 +6,10 @@
 
 water('D:\PHP\XAMPP\htdocs\project\study\photo\a.png','D:\PHP\XAMPP\htdocs\project\study\photo\baidu.png',0,50);
 
+
 function water($img,$water,$pos=9,$tm=100){
+
+
 
 function getImageInfo($path) {
         $info = getimagesize($path);
@@ -71,8 +74,7 @@ function getImageInfo($path) {
     }
     imagecopymerge($dst,$src,$x,$y,0,0,$logo['width'],$logo['height'],$tm);
 
-
-    header('Content-type:image/.png');
+    header('content-type:image/jpeg');
     imagejpeg($dst);
 
     imagedestory($dst);
@@ -82,30 +84,30 @@ function getImageInfo($path) {
 
 
 
-function openImg($path,$type){
-    switch($type){
-        case 'image/jpeg':
-        case 'image/jpg':
-        case 'image/pjpeg':
-            $img=imagecreatefromjpeg($path);
-            break;
-        case 'image/png':
-        case 'image/x-png':
-            $img=imagecreatefrompng($path);
-            break;
-        case 'image/gif':
-            $img=imagecreatefromgif($path);
-            break;
-        case 'image/wbmp':
-            $img=imagecreatefromwbmp($path);
-            break;
-        default:
-            exit('图片类型不支持');
+   function openImg($path,$type){
+       switch($type){
+           case 'image/jpeg':
+           case 'image/jpg':
+           case 'image/pjpeg':
+               $img=imagecreatefromjpeg($path);
+               break;
+           case 'image/png':
+           case 'image/x-png':
+               $img=imagecreatefrompng($path);
+               break;
+           case 'image/gif':
+               $img=imagecreatefromgif($path);
+               break;
+           case 'image/wbmp':
+               $img=imagecreatefromwbmp($path);
+               break;
+           default:
+               exit('图片类型不支持');
 
 
-    }
-    return $img;
-}
+       }
+       return $img;
+   }
 
 
 
