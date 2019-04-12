@@ -5,7 +5,7 @@ $image = imagecreatefrompng('a.png');
 
 
 //定义百分比，缩放到0.1大小
-$percent = 0.5;
+$percent = 0.1;
 
 
 // 将图片宽高获取到
@@ -22,9 +22,9 @@ $new_image = imagecreatetruecolor($new_width, $new_height);
 imagecopyresampled($new_image, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 
 header('content-type:image/jpeg');
-imagejpeg($image);
+imagejpeg($new_image);
 
-imagedestroy($image);
+imagedestroy($new_image);
 
 
 ?>
