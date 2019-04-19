@@ -5,38 +5,53 @@
  * Date: 2019/4/12
  * Time: 9:12
  */
-
-$host='127.0.0.1';
-$user='root';
-$password='root';
-$dbName='text';
-
-$link=new mysqli($host,$user,$password,$dbName);
-if ($link->connect_error){
-    die("连接失败：".$link->connect_error);
+include 'config.php';
+$conn = mysqli_connect(DB_HOST, DB_USER, DB_PWD, DB_NAME);
+if (mysqli_errno($conn))
+{    mysqli_error($conn);
+    exit;
 }
+mysqli_set_charset($conn, DB_CHARSET);
 
 
-//链接数据库
-$conn = mysqli_connect($host,$user,$password,$dbName );
+$userid=trim($_POST['id']);
+$password=trim($_POST['password']);
+$password1=trim($_POST['password1']);
+$username=trim($_POST['name']);
+$age=trim($_POST['age']);
 
-//mysqli_select_db($conn,'text');
-
-//设置在数据库间传输字符时所用的默认字符编码
-mysqli_set_charset($conn,'utf8');
-$sql = "insert into user(user_id,username,age) values('1004','张三','15')";
-
-
-$sql1 = "select user_id,username,age from user";
-//执行一次查询 返回为 0 1
-$result = mysqli_query($conn, $sql);
-if ($result) {
-    echo '成功'.'<br/>';
-} else {
-    echo '失败'.'<br/>';
+//判断密码是否一致
+if($password!=$password1){
+    echo('两次密码不一致，请返回上一页！'.'<br/>');
+    echo '<td><a href="registered.php"<a/><button >返回</button></td>';
 }
-echo '插入' . mysqli_insert_id($conn);
+else if(empty($userid)){
+    echo('账户不能为空,请返回上一页!'.'<br/>');
+    echo '<td><a href="registered.php"<a/><button >返回</button></td>';
 
-mysqli_close($conn);
+}
+else if(strlen($userid)<4){
+    echo('账号长度至少4位数，请返回上一页！'.'<br/>');
+    echo '<td><a href="registered.php"<a/><button >返回</button></td>';
 
-//phpinfo();
+}
+else {
+//判断账号是否存在
+    $sql = "select * from student where id='$userid'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result->num_rows) {
+        echo '注册失败！账号：' . $userid . '已经存在' . '<br/>';
+        while ($row = $result->fetch_array()) {
+            echo "账号:" . $row[0] . " 姓名:" . $row[2] . " 年龄:" . $row[3] . "<br/>";
+        }
+    } //开始注册
+    else {
+        $sql1 = "insert into student(id,password,name,age) values('$userid','$password','$username','$age')";
+        mysqli_query($conn, $sql1);
+        echo '注册成功！您的账号是： ' . $userid . '<br/>';
+    }
+    mysqli_close($conn);
+
+    echo '<td><a href="registered.php"<a/><button >返回</button></td>';
+}
