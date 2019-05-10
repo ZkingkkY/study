@@ -1,17 +1,19 @@
 <?php
 include 'config.php';
-session_start();
+
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PWD, DB_NAME);
 if (mysqli_errno($conn))
 {    mysqli_error($conn);
-    exit;}
+    exit;
+}
 mysqli_set_charset($conn, DB_CHARSET);
 
 $sql="select * from shop ";
 $res = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($res);
-
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,18 +25,26 @@ $row = mysqli_fetch_assoc($res);
 //取出商品信息显示在页面上，并添加购买功能
 foreach ($res as $value) {
     echo ' 商品名 ' . $value['name'] . ' 价格 ' . $value['price'];
-    echo '<td width="100"><a href=buyadd.php?name="' .$value['name'].$value['price']. '">+1</a> </td>';
-    echo '<td width="100"><a href=buycut.php?name="' .$value['name'].$value['price']. '">-1</a> </td>';
+    echo "<a href=buyadd.php?name=" . $value['name'] . '&price=' . $value['price'] .">添加</a>";
+    echo "<a href=buyadd.php?name=" . $value['name'] . '&price=' . $value['price'] .">减少</a>";
     echo '<br />';
 }
-
+session_start();
 //session_destroy($_SESSION['goods']);
+//session_destroy( $_SESSION['totalPrice']);
+//unset($_SESSION['goods']);
+//unset( $_SESSION['totalPrice']);
 $goods = $_SESSION['goods'];
+while (!is_null($goods)) {
 echo '您买了:<br />';
-foreach ($goods as $value) {
-    echo $value['name'] . ' 价格 ' . $value['price'] . ' 数量 ' . $value['number'] . '<br />';
+    foreach ($goods as $value) {
+        echo $value['name'] . ' 价格： ' . $value['price'] . ' 数量： ' . $value['number'] . '<br />';
+    }
+
+    echo '总价：' . $_SESSION['totalPrice'] . '<br />';
+
+    break;
 }
-echo '总价：' . $_SESSION['totalPrice'] . '<br />';
 ?>
 </body>
 </html>
