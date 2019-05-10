@@ -57,8 +57,7 @@ if ($result && mysqli_num_rows($result)) {
         echo '<td width="200">' . $row['ID'] .'</td>';
         echo '<td width="200">' . $row['name'] . '</td>';
         echo '<td width="100">' . $row['age']. '</td>';
-        echo '<td width="100"><a href="edit.php?id=' . $row['ID'] . '">编辑用户</a>
-               </td>';
+        echo '<td width="100"><a href="edit.php?id=' . $row['ID'] . '">编辑用户</a> </td>';
         echo '</tr>';
     }
 
