@@ -10,16 +10,21 @@ session_start();
 //获取传过来的商品名和价格
 $name = $_GET['name'];
 $price = $_GET['price'];
+$goods = $_SESSION['goods'];
 
 //把session中的商品信息和传过来的(刚买的)商品信息对比
-$goods = $_SESSION['goods'];
 if ($name == $goods[$name]['name']) {
-    //买过的话，则总价格增加，相应商品数量增加
-    $_SESSION['totalPrice'] -= $price;
-    $goods[$name]['number'] -= 1;
-} else {
-    //第一次买的话，将相应的商品信息添加到session中
-    header('location: goodsList.php');
+
+    if($goods[$name]['number']==1) {
+        //数量为1的话直接删除该商品
+        unset($goods[$name]);
+        $_SESSION['totalPrice'] -= $price;
+    }
+    else{
+        //买过的话，则总价格减少，相应商品数量减少
+        $_SESSION['totalPrice'] -= $price;
+        $goods[$name]['number'] -= 1;
+    }
 }
 
 $_SESSION['goods'] = $goods;
