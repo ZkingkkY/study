@@ -6,7 +6,7 @@
  * Time: 11:42
  */
 //数据库服务器
-define('DB_HOST', '127.0.0.1');
+define('DB_HOST', '192.168.0.123');
 //数据库用户名
 define('DB_USER', 'root');
 //数据库密码

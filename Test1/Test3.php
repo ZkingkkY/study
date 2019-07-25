@@ -784,4 +784,65 @@ echo dirname(__FILE__);//返回当前文件夹所在路径
 */
 
 
+//递归函数 不再递归的时候，会继续执行上一次没有执行完的代码，
+/*
+ function test($n){
+    echo $n."  ";
+    if($n>0){
+        test($n-1);
+    }else{
+        echo "<-->";
+    }
+    echo  $n."  ";
+    echo "我再执行变量".$n."的循环".'</br>';
+}
+test(2);
+*/
+
+//匿名函数 和闭包（内部函数使用外部变量USE）
+function enclosePerson($name)
+{
+    return function ($doCommand) use ($name)
+    {
+        echo $name.','.$doCommand;
+    };
+}
+
+$clay = enclosePerson('Clay');//现将$name 的值传入匿名函数，然后将整个函数返回
+echo $clay('get me sweet tea!');//再将$doCommand传入返回的匿名函数中
+echo '</br>';
+
+
+function closureFunc3($a){
+   $func = function($b) use($a){
+        echo $a+$b; };
+        return $func;
+}
+
+$func = closureFunc3(1); //函数返回匿名函数
+$func(2); //然后我们在用$func() 调用 //输出: 1
+echo '</br>';
+
+
+/**
+ * @return Closure
+ */
+function closureFunc5(){
+    $num = 2;
+    $func = function() use(&$num) {
+        echo "\n";
+        $num++;
+        echo "我是匿名函数中的值:".$num;
+    };
+
+    echo "\n";
+    echo "我是主函数中的值:".$num;
+    return $func;
+}
+
+$func = closureFunc5();
+$func();
+$func();
+$func();
+//输出:
 ?>

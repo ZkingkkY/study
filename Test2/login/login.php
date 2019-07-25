@@ -1,7 +1,7 @@
 <?php
 session_start();
 header("Content-type:text/html;charset=utf-8");
-$link = mysqli_connect('127.0.0.1','root','root','login');  //链接数据库
+$link = mysqli_connect('192.168.0.123','root','root','login');  //链接数据库
 mysqli_set_charset($link ,'utf8'); //设定字符集
 $name=$_POST['username'];
 $pwd=$_POST['password'];

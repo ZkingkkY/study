@@ -1,0 +1,27 @@
+Index: MYSQL/config.php
+===================================================================
+--- MYSQL/config.php	(revision 5116767b2373345d7d30193500ff6171b79b59e9)
++++ MYSQL/config.php	
+@@ -6,7 +6,7 @@
+  * Time: 11:42
+  */
+ //数据库服务器
+-define('DB_HOST', '127.0.0.1');
++define('DB_HOST', '192.168.0.123');
+ //数据库用户名
+ define('DB_USER', 'root');
+ //数据库密码
+\ No newline at end of file
+Index: cookie/config.php
+===================================================================
+--- cookie/config.php	(revision 5116767b2373345d7d30193500ff6171b79b59e9)
++++ cookie/config.php	
+@@ -5,7 +5,7 @@
+  * Date: 2019/4/24
+  * Time: 16:58
+  */
+-define('DB_HOST', '127.0.0.1');
++define('DB_HOST', '192.168.0.123');
+ //数据库用户名
+ define('DB_USER', 'root');
+ //数据库密码
